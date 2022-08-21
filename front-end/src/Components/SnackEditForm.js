@@ -9,33 +9,13 @@ function SnackEditForm() {
   let navigate = useNavigate();
 
   const [snack, setSnack] = useState({
-   name: "", 
-   fiber: 0, 
-   protein: 0, 
-   added_sugar: 0, 
-   is_healthy: false, 
-   image: "",
+    name: "",
+    fiber: 0,
+    protein: 0,
+    added_sugar: 0,
+    is_healthy: false,
+    image: "",
   });
-
-  const updateSnack = (updatedSnack) => {
-    axios
-      .put(`${API}/snacks/${id}`, updatedSnack)
-      .then(
-        () => {
-          navigate(`/snacks/${id}`);
-        },
-        (error) => console.error(error)
-      )
-      .catch((c) => console.warn("catch", c));
-  };
-
-  const handleTextChange = (event) => {
-    setSnack({ ...snack, [event.target.id]: event.target.value });
-  };
-
-  const handleCheckboxChange = () => {
-    setSnack({ ...snack, is_healthy: !snack.is_healthy });
-  };
 
   useEffect(() => {
     axios.get(`${API}/snacks/${id}`).then(
@@ -44,13 +24,27 @@ function SnackEditForm() {
     );
   }, [id, navigate]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    updateSnack(snack, id);
+  const updateSnack = () => {
+    axios.put(`${API}/snacks/${id}`, snack).then(
+      (res) => {
+        setSnack(res.data.payload);
+        navigate(`/snacks`);
+      },
+      (error) => console.error(error)
+    );
+  };
+
+  const handleTextChange = (event) => {
+    setSnack({ ...snack, [event.target.id]: event.target.value });
   };
 
 
-return (
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    updateSnack();
+  };
+
+  return (
     <div className="New">
       <form onSubmit={handleSubmit}>
         <label For="name">Name:</label>
@@ -65,26 +59,30 @@ return (
         <label For="fiber">Fiber:</label>
         <input
           id="fiber"
-          type="text"
+          type="number"
           value={snack.fiber}
-          placeholder="0g"
+          placeholder="0"
           onChange={handleTextChange}
         />
-        <label For="protein">Category:</label>
+        <span> g</span>
+        <label For="protein">Protein:</label>
         <input
           id="protein"
-          type="text"
+          type="number"
           value={snack.protein}
-          placeholder="0g"
+          placeholder="0"
           onChange={handleTextChange}
         />
-        <label For="is_healthy">Nutritionist Approved:</label>
+        <span> g</span>
+        <label For="added_sugar">Added Sugar:</label>
         <input
-          id="is_healthy"
-          type="checkbox"
-          onChange={handleCheckboxChange}
-          checked={snack.is_healthy}
+          id="added_sugar"
+          type="number"
+          value={snack.added_sugar}
+          placeholder="0"
+          onChange={handleTextChange}
         />
+        <span> g</span>
         <label For="image">Image:</label>
         <input
           id="image"
@@ -98,7 +96,7 @@ return (
         <br />
         <input type="submit" />
       </form>
-      <Link to={`/snacks/${id}`}>
+      <Link to={`/snacks/`}>
         <button>Back</button>
       </Link>
     </div>

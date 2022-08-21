@@ -31,8 +31,8 @@ function SnackDetails() {
   return (
     <>
       <article>
-        <h2>{snack.name}</h2>
-        <img src={snack.image} alt="image"/> 
+        <h4>{snack.name}</h4>
+        <img src={snack.image} alt="pic"/> 
         <div className="showNavigation">
           <section>
             <HealthCheck snack={snack} /> 
@@ -40,7 +40,7 @@ function SnackDetails() {
         
           <h3>Protein: {snack.protein}g</h3>
           <h3>Fiber: {snack.fiber}g</h3>
-          <h3>Added_sugar: {snack.added_sugar}g</h3>
+          <h3>Added sugar: {snack.added_sugar}g</h3>
           <div>
             {" "}
             <Link to={`/snacks`}>
