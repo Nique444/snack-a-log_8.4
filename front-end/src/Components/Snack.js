@@ -3,28 +3,18 @@ import HealthCheck from "./HealthCheck";
 
 function Snack({ snack }) {
   return (
-    <tr>
-      <section>
-        <HealthCheck snack={snack} />
-      </section>
-      <td>
-        <img src={snack.image} alt="" />
-      </td>
-      <td>
+    <div class="card">
+      <img src={snack.image} alt="" class="card-img-top" />
+      <h4 class="card-title">
         <Link className="Snack" to={`/snacks/${snack.id}`}>
-          {" "}
-          <h4>
-            {" "}
-            <a href={snack.id} >
-              {snack.name}
-            </a>
-          </h4>
+          <a href={snack.id}>{snack.name}</a>{" "}
         </Link>
-      </td>
-      <td>
+        <HealthCheck snack={snack} />
+      </h4>
+      <div class="card-body">
         <Link to={`/snacks/${snack.id}`}>✏️</Link>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 }
 

@@ -2,11 +2,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Snack from "./Snack";
 
-
 const API = process.env.REACT_APP_API_URL;
 
 function Snacks() {
-  const [snacks, setSnacks] = useState([])
+  const [snacks, setSnacks] = useState([]);
   useEffect(() => {
     axios
       .get(`${API}/snacks`)
@@ -15,21 +14,13 @@ function Snacks() {
   }, []);
 
   return (
-    <div className="Snacks">
-      <section>
-        <table>
-          <thead>
-            <tr>
-              <th>See this snack</th>
-            </tr>
-          </thead>
-          <tbody>
-            {snacks.map((snack) => {
-              return <Snack key={snack.id} snack={snack} />;
-            })}
-          </tbody>
-        </table>
-      </section>
+    <div className="container">
+      <h3>Snack List</h3>
+      <div class="row">
+        {snacks.map((snack) => {
+          return <div class="col-4"> <Snack key={snack.id} snack={snack} /> </div>
+        })}
+      </div>
     </div>
   );
 }

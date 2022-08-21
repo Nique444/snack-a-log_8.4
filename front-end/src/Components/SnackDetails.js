@@ -15,6 +15,7 @@ function SnackDetails() {
       setSnack(response.data.payload);
     });
   }, [id, navigate, API]);
+  
   const deleteSnack = () => {
     axios
       .delete(`${API}/snacks/${id}`)
@@ -37,7 +38,6 @@ function SnackDetails() {
           <section>
             <HealthCheck snack={snack} /> 
           </section>
-        
           <h3>Protein: {snack.protein}g</h3>
           <h3>Fiber: {snack.fiber}g</h3>
           <h3>Added sugar: {snack.added_sugar}g</h3>

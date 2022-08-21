@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -45,10 +47,11 @@ function SnackEditForm() {
   };
 
   return (
-    <div className="New">
-      <form onSubmit={handleSubmit}>
-        <label For="name">Name:</label>
-        <input
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+        <Form.Label For="name">Name:</Form.Label>
+        <Form.Control
           id="name"
           value={snack.name}
           type="text"
@@ -56,50 +59,58 @@ function SnackEditForm() {
           placeholder="Name of Snack"
           required
         />
-        <label For="fiber">Fiber:</label>
-        <input
+        </Form.Group>
+        <Form.Group>
+        <Form.Label For="fiber">Fiber:</Form.Label>
+        <Form.Control
           id="fiber"
           type="number"
           value={snack.fiber}
           placeholder="0"
           onChange={handleTextChange}
         />
+        </Form.Group>
         <span> g</span>
-        <label For="protein">Protein:</label>
-        <input
+        <Form.Group>
+        <Form.Label For="protein">Protein:</Form.Label>
+        <Form.Control
           id="protein"
           type="number"
           value={snack.protein}
           placeholder="0"
           onChange={handleTextChange}
         />
+        </Form.Group>
         <span> g</span>
-        <label For="added_sugar">Added Sugar:</label>
-        <input
+        <Form.Group>
+        <Form.Label For="added_sugar">Added Sugar:</Form.Label>
+        <Form.Control
           id="added_sugar"
           type="number"
           value={snack.added_sugar}
           placeholder="0"
           onChange={handleTextChange}
         />
+         </Form.Group>
         <span> g</span>
-        <label For="image">Image:</label>
-        <input
+        <Form.Group>
+        <Form.Label For="image">Image:</Form.Label>
+        <Form.Control
           id="image"
-          type="text"
+          type="textarea"
           pattern="http[s]*://.+"
           required
           value={snack.image}
           placeholder="https://"
           onChange={handleTextChange}
         />
-        <br />
-        <input type="submit" />
-      </form>
+        </Form.Group>
+        <Button type="submit" />
+      </Form>
       <Link to={`/snacks/`}>
-        <button>Back</button>
+        <Button>Back</Button>
       </Link>
-    </div>
+    </>
   );
 }
 
