@@ -1,22 +1,14 @@
 const confirmHealth = (snack) => {
-  if (
-    (snack.fiber > 5 && snack.added_sugar < 5) ||
-    (snack.protein > 5 && snack.added_sugar < 5) ||
-    (snack.fiber > 5 || snack.protein > 5 && snack.added_sugar < 5)
-  ) {
-    snack.is_healthy === true;
-  } else if (
-    (snack.fiber > 5 && snack.added_sugar > 5) ||
-    (snack.protein > 5 && snack.added_sugar > 5) ||
-    (snack.fiber > 5 || snack.protein > 5 && snack.added_sugar > 5)
-  ) {
-    snack.is_healthy === false;
-  } else if (snack.fiber > 5 && snack.protein > 5 && snack.added_sugar > 5) {
-    snack.is_healthy === false;
-  } else if (snack.protein > 5 && snack.fiber > 5 && snack.added_sugar > 5) {
-    snack.is_healthy === false;
-  } else {
-    null;
+  let { fiber, protein, added_sugar } = snack;
+  if ((protein >= 5 || fiber >= 5) && added_sugar < 5) {
+    return true;
+  }
+
+  if (isNaN(protein) || isNaN(fiber) || isNaN(added_sugar)) {
+    return null;
+  }
+  if (!protein && !fiber && !added_sugar) {
+    return null;
   }
 };
 

@@ -1,9 +1,9 @@
-import SnackDetails from "../Components/BookmarkDetails";
+import SnackDetails from "../Components/SnackDetails";
 
 function Show() {
   return (
     <div className="Show">
-      <h2>Awesome Snack</h2>
+      <h2>Snacks</h2>
       <SnackDetails />
     </div>
   );

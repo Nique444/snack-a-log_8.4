@@ -10,7 +10,7 @@ function Snacks() {
     axios
       .get(`${API}/snacks`)
       .then((response) => setSnacks(response.data))
-      .catch((err) => console.log(err)));
+      .catch((err) => console.log(err));
   }, []);
 
   return (
