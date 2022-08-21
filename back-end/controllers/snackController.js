@@ -7,8 +7,15 @@ const {
   deleteSnack,
   updateSnack,
 } = require("../queries/snacks.js");
-const { checkName } = require("../validations/checkSnacks");
 const confirmHealth = require("../confirmHealth")
+
+function formatSnackName(name) {
+  const formattedName = name.split(" ");
+  for (let i = 0; i < formattedName.length; i++) {
+    formattedName[i].length > 2 && (formattedName[i] = formattedName[i].charAt(0).toUpperCase() + formattedName[i].slice(1).toLowerCase());
+  }
+  return formattedName.join(" ");
+}
 
 snacks.get("/", async (req, res) => {
   const allSnacks = await getAllSnacks();
@@ -31,12 +38,17 @@ snacks.get("/:id", async (req, res) => {
   }
 });
 
-snacks.post("/", checkName, async (req, res) => {
-  const createdSnack = await createSnack(req.body);
-  if (createdSnack.id) {
-    res.json({ payload: createdSnack, success: true });
-  } else {
-    res.status(422).json({ error: "Could not create snack." });
+snacks.post("/", async (req, res) => {
+  if(req.body) { 
+    req.body.name = formatSnackName(req.body.name)
+    req.body.is_healthy = confirmHealth(req.body)
+    req.body.name && !req.body.image && (req.body.image = "https://dummyimage.com/400x400/6e6c6e/e9e9f5.png&text=No+Image")
+    const createdSnack = await createSnack(req.body);
+    if (createdSnack.name && createdSnack.image) {
+      res.status(200).send({ success: true, payload: createdSnack });
+    } else if (createdSnack.name && !createdSnack.image) {
+      res.status(200).send({ success: true, payload: req.body });
+    }
   }
 });
 
@@ -56,13 +68,14 @@ snacks.delete("/:id", async (req, res) => {
   }
 });
 
-snacks.put("/:id", checkName, async (req, res) => {
+snacks.put("/:id", async (req, res) => {
   const { id } = req.params;
-//   const editedSnack = req.body
-  const updatedSnack = await updateSnack(req.body, id);
-//   editedSnack.is_healthy = confirmHealth(editedSnack)
-  if (updatedSnack.id) {
-    res.status(200).json({ payload: updatedSnack, success: true });
+  if (req.body) { 
+  req.body.name = formatSnackName(req.body.name)
+  req.body.is_healthy = confirmHealth(req.body)
+  req.body.name && !req.body.image && (req.body.image = "https://dummyimage.com/400x400/6e6c6e/e9e9f5.png&text=No+Image")
+  const updatedSnack = await updateSnack(id, req.body);
+  res.status(200).json({ payload: updatedSnack, success: true })
   } else {
     res.status(404).json({ error: "Update Unsuccessful." });
   }

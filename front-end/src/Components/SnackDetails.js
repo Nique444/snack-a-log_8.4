@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import heartSolid from "../assets/heart-solid.png";
+import heartOutline from "../assets/heart-regular.png";
 
 function SnackDetails() {
   const [snack, setSnack] = useState([]);
@@ -21,7 +23,7 @@ function SnackDetails() {
       })
       .catch((c) => console.error("catch", c));
   };
-  
+
   const handleDelete = () => {
     deleteSnack();
   };
@@ -29,12 +31,8 @@ function SnackDetails() {
   return (
     <>
       <article>
-      <h2>
-      {snack.name}
-      </h2>
-        <h3>
-          {snack.image}
-        </h3>
+        <h2>{snack.name}</h2>
+        <h3>{snack.image}</h3>
         <div className="showNavigation">
           <div>
             {" "}
@@ -52,7 +50,6 @@ function SnackDetails() {
           </div>
         </div>
       </article>
-    
     </>
   );
 }
