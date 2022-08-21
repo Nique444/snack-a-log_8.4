@@ -31,10 +31,6 @@ function SnackNewForm() {
     setSnack({ ...snack, [event.target.id]: event.target.value });
   };
 
-  const handleCheckboxChange = () => {
-    setSnack({ ...snack, is_healthy: !snack.is_healthy });
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     addSnack(snack);
@@ -57,32 +53,28 @@ function SnackNewForm() {
           id="fiber"
           type="text"
           value={snack.fiber}
-          placeholder="0g"
+          placeholder="0"
           onChange={handleTextChange}
         />
+        <span> g</span>
         <label For="protein">Protein:</label>
         <input
           id="protein"
           type="text"
           value={snack.protein}
-          placeholder="0g"
+          placeholder="0"
           onChange={handleTextChange}
         />
+        <span> g</span>
         <label For="added_sugar">Added sugar:</label>
         <input
           id="added_sugar"
           type="text"
           value={snack.added_sugar}
-          placeholder="0g"
+          placeholder="0"
           onChange={handleTextChange}
         />
-        <label For="is_healthy">Nutritionist Approved:</label>
-        <input
-          id="is_healthy"
-          type="checkbox"
-          onChange={handleCheckboxChange}
-          checked={snack.is_healthy}
-        />
+        <span> g</span>
         <label For="image">Image:</label>
         <input
           id="image"
