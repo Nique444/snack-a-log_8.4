@@ -39,7 +39,7 @@ function SnackEditForm() {
 
   useEffect(() => {
     axios.get(`${API}/snacks/${id}`).then(
-      (response) => setSnack(response.data),
+      (response) => setSnack(response.data.payload),
       (error) => navigate(`/not-found`)
     );
   }, [id, navigate]);

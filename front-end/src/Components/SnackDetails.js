@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import heartSolid from "../assets/heart-solid.png";
-import heartOutline from "../assets/heart-regular.png";
+import HealthCheck from "./HealthCheck";
+
 
 function SnackDetails() {
   const [snack, setSnack] = useState([]);
@@ -12,7 +12,7 @@ function SnackDetails() {
 
   useEffect(() => {
     axios.get(`${API}/snacks/${id}`).then((response) => {
-      setSnack(response.data);
+      setSnack(response.data.payload);
     });
   }, [id, navigate, API]);
   const deleteSnack = () => {
@@ -32,8 +32,15 @@ function SnackDetails() {
     <>
       <article>
         <h2>{snack.name}</h2>
-        <h3>{snack.image}</h3>
+        <img src={snack.image} alt="image"/> 
         <div className="showNavigation">
+          <section>
+            <HealthCheck snack={snack} /> 
+          </section>
+        
+          <h3>Protein: {snack.protein}g</h3>
+          <h3>Fiber: {snack.fiber}g</h3>
+          <h3>Added_sugar: {snack.added_sugar}g</h3>
           <div>
             {" "}
             <Link to={`/snacks`}>

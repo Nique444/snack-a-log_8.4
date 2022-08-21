@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SnackNewForm() {
  let navigate = useNavigate();
@@ -60,11 +60,19 @@ function SnackNewForm() {
           placeholder="0g"
           onChange={handleTextChange}
         />
-        <label For="protein">Category:</label>
+        <label For="protein">Protein:</label>
         <input
           id="protein"
           type="text"
           value={snack.protein}
+          placeholder="0g"
+          onChange={handleTextChange}
+        />
+        <label For="added_sugar">Added sugar:</label>
+        <input
+          id="added_sugar"
+          type="text"
+          value={snack.added_sugar}
           placeholder="0g"
           onChange={handleTextChange}
         />
@@ -80,7 +88,6 @@ function SnackNewForm() {
           id="image"
           type="text"
           pattern="http[s]*://.+"
-          required
           value={snack.image}
           placeholder="https://"
           onChange={handleTextChange}
