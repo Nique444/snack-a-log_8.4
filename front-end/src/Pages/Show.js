@@ -1,4 +1,4 @@
-import SnackDetails from "../Components/BookmarkDetails";
+import SnackDetails from "../Components/SnackDetails";
 
 function Show() {
   return (

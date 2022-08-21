@@ -9,8 +9,8 @@ function Snacks() {
   useEffect(() => {
     axios
       .get(`${API}/snacks`)
-      .then((response) => setSnacks(response.data))
-      .catch((err) => console.log(err)));
+      .then((response) => setSnacks(response.data.payload))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
