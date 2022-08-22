@@ -14,14 +14,14 @@ function Snacks() {
   }, []);
 
   return (
-    <div className="container">
-      <h3>Snack List</h3>
-      <div class="row">
+    <div>
+      <h3 className="title">Snack List</h3>
+      <div className="snacks">
         {snacks.map((snack) => {
-          return <div class="col-4"> <Snack key={snack.id} snack={snack} /> </div>
+          return <Snack key={snack.id} snack={snack} /> 
         })}
+        </div>
       </div>
-    </div>
   );
 }
 

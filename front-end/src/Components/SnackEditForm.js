@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -40,7 +40,6 @@ function SnackEditForm() {
     setSnack({ ...snack, [event.target.id]: event.target.value });
   };
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
     updateSnack();
@@ -48,68 +47,68 @@ function SnackEditForm() {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form className="form" onSubmit={handleSubmit}>
         <Form.Group>
-        <Form.Label For="name">Name:</Form.Label>
-        <Form.Control
-          id="name"
-          value={snack.name}
-          type="text"
-          onChange={handleTextChange}
-          placeholder="Name of Snack"
-          required
-        />
+          <Form.Label For="name">Name:</Form.Label>
+          <Form.Control
+            id="name"
+            value={snack.name}
+            type="text"
+            onChange={handleTextChange}
+            placeholder="Name of Snack"
+            required
+          />
         </Form.Group>
         <Form.Group>
-        <Form.Label For="fiber">Fiber:</Form.Label>
-        <Form.Control
-          id="fiber"
-          type="number"
-          value={snack.fiber}
-          placeholder="0"
-          onChange={handleTextChange}
-        />
+          <Form.Label For="fiber">Fiber:</Form.Label>
+          <Form.Control
+            id="fiber"
+            type="number"
+            value={snack.fiber}
+            placeholder="0"
+            onChange={handleTextChange}
+          />
+          <span> g</span>
         </Form.Group>
-        <span> g</span>
         <Form.Group>
-        <Form.Label For="protein">Protein:</Form.Label>
-        <Form.Control
-          id="protein"
-          type="number"
-          value={snack.protein}
-          placeholder="0"
-          onChange={handleTextChange}
-        />
+          <Form.Label For="protein">Protein:</Form.Label>
+          <Form.Control
+            id="protein"
+            type="number"
+            value={snack.protein}
+            placeholder="0"
+            onChange={handleTextChange}
+          />
+          <span> g</span>
         </Form.Group>
-        <span> g</span>
         <Form.Group>
-        <Form.Label For="added_sugar">Added Sugar:</Form.Label>
-        <Form.Control
-          id="added_sugar"
-          type="number"
-          value={snack.added_sugar}
-          placeholder="0"
-          onChange={handleTextChange}
-        />
-         </Form.Group>
-        <span> g</span>
-        <Form.Group>
-        <Form.Label For="image">Image:</Form.Label>
-        <Form.Control
-          id="image"
-          type="textarea"
-          pattern="http[s]*://.+"
-          required
-          value={snack.image}
-          placeholder="https://"
-          onChange={handleTextChange}
-        />
+          <Form.Label For="added_sugar">Added Sugar:</Form.Label>
+          <Form.Control
+            id="added_sugar"
+            type="number"
+            value={snack.added_sugar}
+            placeholder="0"
+            onChange={handleTextChange}
+          />
+          <span> g</span>
         </Form.Group>
-        <Button type="submit" />
+        <Form.Group>
+          <Form.Label For="image">Image:</Form.Label>
+          <Form.Control
+            id="image"
+            type="url"
+            pattern="http[s]*://.+"
+            required
+            value={snack.image}
+            placeholder="https://"
+            onChange={handleTextChange}
+          />
+        </Form.Group>
+        <Button type="submit"> Submit </Button>
+        <Link to={`/snacks/`}>
+          <Button>Back</Button>
+        </Link>
       </Form>
-      <Link to={`/snacks/`}>
-        <Button>Back</Button>
-      </Link>
     </>
   );
 }

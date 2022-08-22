@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function SnackNewForm() {
  let navigate = useNavigate();
@@ -37,7 +37,7 @@ function SnackNewForm() {
   };
 
   return (
-    <div className="New">
+    <div className="form">
       <form onSubmit={handleSubmit}>
         <label For="name">Name:</label>
         <input
@@ -78,7 +78,7 @@ function SnackNewForm() {
         <label For="image">Image:</label>
         <input
           id="image"
-          type="text"
+          type="url"
           pattern="http[s]*://.+"
           value={snack.image}
           placeholder="https://"
@@ -86,6 +86,9 @@ function SnackNewForm() {
         />
         <br />
         <input type="submit" />
+        <Link to={`/snacks/`}>
+          <button>Back</button>
+        </Link>
       </form>
     </div>
   );

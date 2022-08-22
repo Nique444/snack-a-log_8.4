@@ -15,7 +15,7 @@ function SnackDetails() {
       setSnack(response.data.payload);
     });
   }, [id, navigate, API]);
-  
+
   const deleteSnack = () => {
     axios
       .delete(`${API}/snacks/${id}`)
@@ -32,7 +32,7 @@ function SnackDetails() {
   return (
     <>
       <article>
-        <h4>{snack.name}</h4>
+        <h4 className="show-title">{snack.name}</h4>
         <img src={snack.image} alt="pic"/> 
         <div className="showNavigation">
           <section>

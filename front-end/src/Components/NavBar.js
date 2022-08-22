@@ -4,7 +4,7 @@ export default function NavBar() {
   return (
     <nav>
       <h1 className="nav-title">
-        <Link to="/snacks" className="nav-title-link">Snacks</Link>
+        <Link to="/snacks" className="nav-title-link">Snack-A-Log</Link>
       </h1>
       <button className="nav-button">
         <Link to="/snacks/new" className="nav-button-link">New Snack</Link>
