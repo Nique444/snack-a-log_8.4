@@ -12,7 +12,7 @@ function Snack({ snack }) {
         <HealthCheck snack={snack} />
       </h4>
       <div class="card-body">
-        <Link to={`/snacks/${snack.id}`}>✏️</Link>
+        <Link to={`/snacks/${snack.id}/edit`}>✏️</Link>
       </div>
     </div>
   );
