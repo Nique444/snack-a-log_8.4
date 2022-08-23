@@ -16,6 +16,6 @@ function Snack({ snack }) {
       </div>
     </div>
   );
-}
+};
 
 export default Snack;
