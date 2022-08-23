@@ -37,8 +37,8 @@ snacks.post("/", async (req, res) => {
       res.status(200).send({ success: true, payload: createdSnack });
     } else if (createdSnack.name && !createdSnack.image) {
       res.status(200).send({ success: true, payload: req.body });
-    }
-  }
+    };
+  };
 });
 
 snacks.get("/:id", async (req, res) => {
