@@ -144,3 +144,7 @@ Keep the React app running, open a new tab and run
 ## Resources
 
 This project uses [this template](https://github.com/joinpursuit/pern-final-project-template) - you can follow the readme to set up deployment.
+
+## FRONT END DEPLOYMENT 
+
+(https://heartfelt-khapse-a29476.netlify.app/snacks)
