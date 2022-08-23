@@ -50,7 +50,7 @@ snacks.get("/:id", async (req, res) => {
     res
       .status(404)
       .json({ payload: "not found", success: false, error: "Snack not found" });
-  }
+  };
 });
 
 
