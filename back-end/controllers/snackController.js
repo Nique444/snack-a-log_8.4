@@ -42,8 +42,8 @@ snacks.post("/", async (req, res) => {
 });
 
 snacks.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const snack = await getSnack(id);
+  const { id } = req.params
+  const snack = await getSnack(id)
   if (snack) {
     res.json({ payload: snack, success: true });
   } else {
