@@ -147,4 +147,4 @@ This project uses [this template](https://github.com/joinpursuit/pern-final-proj
 
 ## FRONT END DEPLOYMENT 
 
-(https://heartfelt-khapse-a29476.netlify.app/snacks)
+(https://heartfelt-khapse-a29476.netlify.app)
